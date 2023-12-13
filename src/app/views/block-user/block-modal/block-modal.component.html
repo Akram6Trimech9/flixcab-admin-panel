@@ -1,0 +1,16 @@
+<div class="modal-body">
+    <form [formGroup]="emailForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Subject</mat-label>
+        <input matInput formControlName="subject" placeholder="Subject" />
+      </mat-form-field><br>
+      <mat-form-field appearance="fill">
+        <mat-label>Message</mat-label>
+        <textarea matInput formControlName="message" placeholder="Send Message To user"></textarea>
+      </mat-form-field>
+      <div class="button-container">
+        <button mat-raised-button [color]="'#2daab8'" (click)="sendEmail()">Send</button>
+        <button mat-button color="warn" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>

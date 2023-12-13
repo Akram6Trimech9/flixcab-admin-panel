@@ -1,0 +1,161 @@
+<div class="main_content_iner ">
+    <div class="container-fluid p-0">
+      <button (click)="addCouponFn()" mat-raised-button id="toggle-linear">
+        <span  *ngIf="!showAddCouponForm" >
+          add new coupons
+
+        </span>
+        <span  *ngIf="showAddCouponForm" >
+
+          check all coupons
+        </span>
+      </button>
+      <mat-stepper *ngIf="showAddCouponForm"  [linear]="isLinear" #stepper>
+        <!-- Step 1: Coupon Information -->
+        <mat-step [stepControl]="firstFormGroup" errorMessage="Coupon info is required.">
+          <ng-template matStepLabel>Create Coupon</ng-template>
+          <form [formGroup]="firstFormGroup">
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Coupon" formControlName="name" required>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Expiry Date</mat-label>
+              <input matInput [matDatepicker]="expiryPicker" placeholder="Expiry Date" formControlName="expiry" required>
+              <mat-datepicker-toggle matSuffix [for]="expiryPicker"></mat-datepicker-toggle>
+              <mat-datepicker #expiryPicker></mat-datepicker>
+              <mat-error *ngIf="firstFormGroup.get('expiry')?.hasError('invalidDate')">
+                Expiry date must be in the future.
+              </mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Discount</mat-label>
+              <input matInput placeholder="Discount" formControlName="discount" required>
+            </mat-form-field>
+            <div>
+              <button mat-button [disabled]="!isFirstFormValid()" (click)="stepper.next()">Next</button>
+            </div>
+          </form>
+        </mat-step>
+  
+        <mat-step [stepControl]="secondFormGroup" label="Select Products">
+          <form [formGroup]="secondFormGroup">
+            <section class="example-section">
+              <mat-checkbox
+                [color]="'#2daab8'"
+                [checked]="allComplete"
+                [indeterminate]="someComplete()"
+                (change)="toggleAllProducts()"
+              >
+                Select All Products
+              </mat-checkbox>
+              <mat-form-field>
+                <input matInput placeholder="Search for a product" formControlName="productCtrl" (input)="searchProducts()">
+              </mat-form-field>
+              <div *ngFor="let product of selectedProducts">
+                <mat-checkbox
+                [color]="'#2daab8'"
+                [checked]="isProductSelected(product)"
+                (change)="updateAllComplete()"
+              >
+                {{ product.title }}
+              </mat-checkbox>
+              
+              </div>
+            </section>
+            <div>
+              <button mat-button (click)="stepper.previous()">Back</button>
+              <button mat-button [disabled]="!isSecondFormValid()" (click)="stepper.next()">Next</button>
+            </div>
+          </form>
+        </mat-step>
+  
+   <!-- Step 2: Select Products -->
+   
+   
+  
+        <!-- Step 3: Done -->
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button (click)="resetStepper()">reset</button>
+            <button mat-button (click)="gatherFormData()">Submit</button>
+          </div>
+        </mat-step>
+      </mat-stepper>
+    
+  <div *ngIf="!showAddCouponForm">
+     
+ 
+       
+      <div class="col-xl-12">
+          <div class="white_box QA_section card_height_100">
+              <div class="white_box_tittle list_header m-0 align-items-center">
+                   <div class="main-title mb-sm-15">
+                      <h3 class="m-0 nowrap">Categories</h3>
+                  </div>
+                  <div class="box_right d-flex lms_block">
+                      <div class="serach_field-area2">
+                          <div class="search_inner">
+                              <form Active="#">
+                                  <div class="search_field">
+                                      <input type="text" placeholder="Search here...">
+                                  </div>
+                                  <button type="submit"> <i class="ti-search"></i> </button>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="QA_table ">
+
+                  <table class="table lms_table_active2">
+                      <thead>
+                          <tr>
+                              <th scope="col">Name</th>
+                              <th scope="col">Expiry</th>
+                              <th scope="col">Discount</th>
+                              <th scope="col">Actions</th>
+
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let coupon of allCoupons">
+                              <td>{{coupon?.name}}</td>
+                              <td>
+                                  <div class="amoutn_action d-flex align-items-center">
+                                     {{coupon?.expiry | date}}
+                                  </div>
+                              </td>
+                              <td>
+                                <div class="amoutn_action d-flex align-items-center">
+                                   {{coupon?.discount}} %
+                                </div>
+                            </td>
+                              <td>
+                                  <div class="dropdown ms-4">
+                                      <a class=" dropdown-toggle hide_pils"   role="button"
+                                          id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                          aria-haspopup="true" aria-expanded="false">
+                                          <i class="fas fa-ellipsis-v"></i>
+                                      </a>
+                                      <div class="dropdown-menu dropdown-menu-right"
+                                          aria-labelledby="dropdownMenuLink">
+                                          <a class="dropdown-item" (click)="updateCoupon(coupon)" >Edit</a>
+                                          <a class="dropdown-item" (click)="deleteCoupon(coupon)" >Delete</a>
+                                      </div>
+                                  </div>
+                              </td>
+                              
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>

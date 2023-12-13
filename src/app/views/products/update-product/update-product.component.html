@@ -1,0 +1,47 @@
+<div class="modal-body" >
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div>
+        <input placeholder="Product Title" formControlName="title" name="title" class="form-control" type="text">
+      </div>
+      <div>
+        <input placeholder="Product description" formControlName="description" name="description" class="form-control" type="text">
+      </div>
+      <div>
+        <input placeholder="Product price" formControlName="prix" name="price" class="form-control" type="text">
+      </div>
+      <div>
+        <input placeholder="Product ingredients" formControlName="ingredients" name="ingredients" class="form-control" type="text">
+      </div>
+      <div>
+        <input placeholder="Product promotion" formControlName="promotion" name="promotion" class="form-control" type="text">
+      </div>
+      <div>
+        <select class="form-control" formControlName="category">
+          <option  [value]="data.category._id" [selected]="data.category.title" >{{data.category.title}}</option>
+          <option value="category._id" *ngFor="let cat of categories">{{cat.title}}</option>
+        </select>
+      </div>
+      <div *ngIf="f['title'].invalid && (f['title'].dirty || f['title'].touched)">
+        <div *ngIf="f['title'].hasError('required')" class="text-danger">
+          Use a correct value
+        </div>
+      </div>
+      <div class="mt-3">
+        <button type="submit" class="btn btn-primary" style="background-color: #2daab8; color: white;">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="onCancel()" style="background-color: #2daab8; color: white;">Cancel</button>
+      </div>
+    </form>
+  
+    <!-- Display existing photos and allow deletion -->
+    <div *ngIf="data.images && data.images.length > 0">
+      <h4>Existing Photos:</h4>
+      <div *ngFor="let image of data.images">
+        <img [src]="image.url" alt="Product Image" height="50" width="50">
+        <button type="button" (click)="deleteImage(image.public_id)" style="background-color: #2daab8; color: white;">Delete</button>
+      </div>
+    </div>
+  
+    <!-- Button to trigger photo deletion and upload -->
+    <button type="button" (click)="deleteAndUploadPhotos()" style="background-color: #2daab8; color: white;">Delete and Upload Photos</button>
+  </div>
+  

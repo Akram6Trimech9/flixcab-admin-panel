@@ -1,0 +1,40 @@
+<div class="modal-body" *ngIf="!uploadPictures ;else upload">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div>
+        <input placeholder="Product Title" formControlName="title" name="title" class="form-control" type="text">
+     </div>
+     <div>
+        <input placeholder="Product description" formControlName="description" name="description" class="form-control" type="text">
+    </div>
+     <div>
+        <input placeholder="Product price" formControlName="prix" name="price" class="form-control" type="text">
+     </div>
+     <div>
+        <input placeholder="Product ingredients" formControlName="ingredients" name="ingredients" class="form-control" type="text">
+     </div>
+     <div>
+        <input placeholder="Product promotion" formControlName="promotion" name="promotion" class="form-control" type="text">
+     </div>
+     <div>
+        <select class="form-control" formControlName="category"  >
+            <option *ngFor="let item of data" [value]="item._id">{{item.title}}</option>
+         </select>
+     </div>
+     <div *ngIf="f['title'].invalid && (f['title'].dirty || f['title'].touched)">
+        <div  *ngIf="f['title'].hasError('required')" class="text-danger">
+             use a correct Value
+            </div>
+        </div>
+       <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+  
+  <ng-template #upload>
+    <div class="modal-body" *ngIf="productId">
+      <app-upload [id]="productId"></app-upload>
+    </div>
+  </ng-template>
+  

@@ -1,0 +1,81 @@
+<div class="QA_table ">
+
+    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+        <table class="table lms_table_active dataTable no-footer dtr-inline collapsed"
+            id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info"
+            style="width: 835px;">
+            <thead>
+                <tr role="row">
+                     
+                    <th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" style="width: 50px;"
+                        aria-label=": activate to sort column ascending">prix</th>
+                    <th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" style="width: 50px;"
+                        aria-label="name: activate to sort column ascending">name</th>
+                    <th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" style="width: 150px;"
+                        aria-label="status: activate to sort column ascending">images</th>
+                    <th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" style="width: 50px;"
+                        aria-label="Text: activate to sort column ascending">promotion</th>
+                        <th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" style="width: 50px;"
+                        aria-label="Date: activate to sort column ascending">Totalrating</th>
+                    <th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" style="width: 50px;"
+                        aria-label="Date: activate to sort column ascending">category</th>
+                        <th scope="col" class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                        rowspan="1" colspan="1" style="width: 50px;"
+                        aria-label="Date: activate to sort column ascending">Actions</th>
+                    </tr>
+            </thead>
+            <tbody *ngIf="products">
+                <tr  *ngFor="let product of products"  role="row" class="odd" >
+                    <th scope="row" tabindex="0" class="sorting_1">
+                        <label class="form-label primary_checkbox d-flex me-12 ">
+                          {{product?.prix}}
+                        </label>
+                    </th>
+                    <td>                           {{product?.title}}
+                    </td>
+   
+                    <td>
+                        <div class="d-flex align-items-center">
+                          <div class="flex-shrink-0" *ngIf="product.images && product.images.length > 0">
+                            <img *ngFor="let item of product.images" class="circle-rounded me-3" src="{{item?.url}}" alt="" width="30" height="30">
+                          </div>
+                        </div>
+                      </td>
+                      
+                    <td>
+                        <p> {{product.promotion}}</p>
+                    </td>
+                    <td  >
+                        <p> {{product.totalrating}}</p>
+
+                    </td>
+                    <td *ngIf="product.category">
+                        <p> {{product.category.title}}
+
+                    </td>
+                    <td *ngIf="product._id">
+                        <button style="border-radius: 30px;" class="btn btn-danger" (click)="deleteProduct(product._id)">delete</button>
+                        <button style="border-radius: 30px;" class="btn btn-warning" (click)="updateProduct(product)">update</button>
+                    </td>
+                </tr>
+             
+            </tbody>
+        </table>
+        <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+            Showing 1 to 10 of 10 entries</div>
+        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><a
+                class="paginate_button previous disabled" aria-controls="DataTables_Table_0"
+                data-dt-idx="0" tabindex="0" id="DataTables_Table_0_previous"><i
+                    class="ti-arrow-left"></i></a><span><a class="paginate_button current"
+                    aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0">1</a></span><a
+                class="paginate_button next disabled" aria-controls="DataTables_Table_0"
+                data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next"><i
+                    class="ti-arrow-right"></i></a></div>
+    </div>
+</div>

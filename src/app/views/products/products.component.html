@@ -1,0 +1,40 @@
+<div class="main_content_iner ">
+    <div class="container-fluid p-0">
+        <div class="row justify-content-center">
+            <div class="col-md-3">
+                <div class="text-start">
+                    <button  (click)="addProduct()" class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"><i
+                            class="icon-pencil" ></i>ADD NEW PRODUCT</button>
+                </div>
+                <div  class="email-sidebar">
+                    <h4>Categories</h4>
+                    <ul   class="text-start">
+                        <li  class="text-start"> <a (click)="changeCat('')"  [class.active]="!selectedCategory"  ><i
+                            class="ti-pin2" ></i>All Products</a></li>
+                        <li *ngFor="let category of allCategories" class="text-start"> <a [class.active]="selectedCategory === category._id"  (click)="changeCat(category._id)" ><i
+                                    class="ti-pin2" ></i>{{category.title}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="white_box QA_section mb_30">
+                    <div class="white_box_tittle list_header">
+                        <h4>Search for a product</h4>
+                        <div class="box_right d-flex lms_block">
+                            <div class="serach_field_2">
+                                <div class="search_inner">
+                                    <form active="#">
+                                        <div class="search_field">
+                                            <input type="text" placeholder="Search content here...">
+                                        </div>
+                                        <button type="submit"> <i class="ti-search"></i> </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   <product-table [products]="allProducts"   (deleteProd)="deleteProduct($event)"  (updateProd)="updateProduct($event)"   ></product-table>
+                </div>
+            </div>
+        </div>
+    </div>

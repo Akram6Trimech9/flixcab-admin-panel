@@ -1,0 +1,11 @@
+.button{
+    color: white ; 
+     background-color:   #2daab8;
+     border: none;
+     padding: 10px;
+     border-radius: 90%;
+}
+.custom-snackbar {
+    background-color: #4CAF50;  
+    color: #fff;
+  }

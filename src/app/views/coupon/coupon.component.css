@@ -1,0 +1,19 @@
+#toggle-linear {
+    background-color: #2daab8;
+    color: white; /* Set the text color to white for better visibility */
+  }
+  
+  .mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+  
+  ::ng-deep .mat-step-header .mat-step-icon-selected,
+::ng-deep .mat-step-header .mat-step-icon-state-done,
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+  background-color: #2daab8;
+  color: #fff;
+}

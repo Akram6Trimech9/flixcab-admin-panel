@@ -1,0 +1,49 @@
+
+.modal-body {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button.btn-primary {
+    background-color: #2daab8;
+    color: #fff;
+  }
+  
+  button.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+  }
+  
+  button:hover {
+    background-color: #217c8e; /* Slightly darker shade for hover effect */
+  }
+  
